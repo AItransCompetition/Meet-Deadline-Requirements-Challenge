@@ -6,14 +6,14 @@ This repo contains demos and datasets of *ACM Multimedia 2021 Grand Challenge: M
 
 - [Quick Start](#quick-start)
   - [Requirements](#requirements)
-  - [Run A Demo](#run-a-demo)
+  - [Run a Demo](#run-a-demo)
 - [Your Task](#your-task)
   - [Blocks Scheduler](#blocks-scheduler)
   - [Bandwidth Estimator](#bandwidth-estimator)
   - [Other States Update Points](#other-states-update-points)
 - [Solution Evaluation](#solution-evaluation)
-  - [Create An Emulator](#create-an-emulator)
-  - [Run An Emulator](#run-an-emulator)
+  - [Create an Emulator](#create-an-emulator)
+  - [Run an Emulator](#run-an-emulator)
   - [cal_qoe](#cal_qoe)
 - [Analyzing Tools](#analyzing-tools)
   - [print_debug](#print_debug)
@@ -32,12 +32,12 @@ pip3 install -r requirements.txt
 Other requirements: If you want to use a learning-based solution, you need to install some other packages. For example, you need to install [torch](https://pypi.org/project/torch/) to run [RL-demo-using-torch](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/blob/master/solution_demos/rl_torch/solution.py).  
 (*The packages supported on our submission evaluating system can be found in [import-package](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#import-package).)
 
-## Run A Demo
+## Run a Demo
 After basic requirements installed, you can run run_this.py to evaluate the reno solution demo:
 ```bash
 python3 run_this.py
 ```
-Now you have successfully run the demo [Reno](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#reno), which can be used directly in the [submitting](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#submit).   
+Now you have successfully run the demo [Reno](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#reno), which can be used directly in the [submission](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#submit).   
 If you want to change the evaluation process, you can modify run_this.py or create your own evaluating program. [Solution Evaluation](#solution-evaluation) will show you more details on how to achieve this.
 
 
@@ -48,7 +48,7 @@ We have provided some [demos of solution](https://github.com/AItransCompetition/
 
 ## Blocks Scheduler
 
-Select which block in `block_queue` should be sent at the time `cur_time`. You need to implement your scheduler algorithm in method `select_block`. 
+Selecting which block in `block_queue` should be sent at the time `cur_time`. You need to implement your scheduler algorithm in method `select_block`. 
 
 The emulator will call `select_block` every time sender tries to send a packet from a block. Your algorithm need to select a block and return its id.
 
@@ -107,7 +107,7 @@ Moreover, you can also update the send rate or CWND when returning from `on_pack
 
 # Solution Evaluation
 
-## Create An Emulator
+## Create an Emulator
 
 ```python
 # Instantiate the solution
@@ -136,7 +136,7 @@ The specific meanings of the optional parameters are as follows:
 | SEED                | -      | Emulator random seed                         |
 | RUN_DIR             | -      | Eimulator run root directory                |
 
-## Run An Emulator
+## Run an Emulator
 
 ```python
 emulator.run_for_dur(15)
