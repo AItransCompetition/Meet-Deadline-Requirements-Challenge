@@ -29,22 +29,22 @@ Basic requirements: You can install our emulator platform([simple-emulator](http
 pip3 install -r requirements.txt
 ```
 
-Other requirements: If you want to use a learning-based solution, you need to install some other packages. For example, you need to install [torch](https://pypi.org/project/torch/) to run [RL-demo-using-torch](https://github.com/AItransCompetition/Meet-Deadline-Requirements/blob/master/solution_demos/rl_torch/solution.py).  
-(*The packages supported on our submission evaluating system can be found in [import-package](https://github.com/AItransCompetition/Meet-Deadline-Requirements/tree/master/solution_demos#import-package).)
+Other requirements: If you want to use a learning-based solution, you need to install some other packages. For example, you need to install [torch](https://pypi.org/project/torch/) to run [RL-demo-using-torch](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/blob/master/solution_demos/rl_torch/solution.py).  
+(*The packages supported on our submission evaluating system can be found in [import-package](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#import-package).)
 
 ## Run A Demo
 After basic requirements installed, you can run run_this.py to evaluate the reno solution demo:
 ```bash
 python3 run_this.py
 ```
-Now you have successfully run the demo [Reno](https://github.com/AItransCompetition/Meet-Deadline-Requirements/tree/master/solution_demos#reno), which can be used directly in the [submitting](https://github.com/AItransCompetition/Meet-Deadline-Requirements/tree/master/solution_demos#submit).   
+Now you have successfully run the demo [Reno](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#reno), which can be used directly in the [submitting](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos#submit).   
 If you want to change the evaluation process, you can modify run_this.py or create your own evaluating program. [Solution Evaluation](#solution-evaluation) will show you more details on how to achieve this.
 
 
 # Your Task 
 
 Participants need to implement a *Scheduler*. The *Scheduler* consists of two parts-*Blocks Scheduler* and *Bandwidth Estimator*.
-We have provided some [demos of solution](https://github.com/AItransCompetition/Meet-Deadline-Requirements/tree/master/solution_demos).
+We have provided some [demos of solution](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos).
 
 ## Blocks Scheduler
 
