@@ -1,8 +1,8 @@
 # Solution
 
 ## Submit
-* The type of file you submit is "*.zip". the name is like "submit.zip".
-* The "submit.zip" is gotten by compressed a folder called submit.The path is like following:
+* The type of file you submit is "*.zip". The name is like "submit.zip".
+* The "submit.zip" is gotten by compressing a folder called "submit". The path is like following:
 ```
 submit
 │   solution.py
@@ -18,7 +18,7 @@ import os, inspect
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 model_path = current_dir+"/model.path"
 ```
-- submission limit: 3 times a day during the compitition.
+- Submission limit: 3 times a day during the compitition.
 
 ## Demos Of solution.py
 
@@ -30,16 +30,16 @@ In this demo, the `cc_trigger` is the implementation of [Reno](https://en.wikipe
 
 ### RL_torch
 
-In this demo, the `select_block` is the same as the demo [Reno](#Reno). 
+In this demo, the `select_block` is the same as that in the demo [Reno](#Reno). 
 
 The `cc_trigger` contains a bandwidth estimator based on reinforcement learning, which is implemented by [PyTorch](https://github.com/pytorch/pytorch). 
 
-In the bandwidth estimator, the solution first defines a 3-layer fully connected network object —— NN, each of which has a size of N_STATES, N_HIDDEN, and N_ACTIONS. Based on the NN network, the solution implements [DQN Algorithm](https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html).
+In the bandwidth estimator, the solution first defines a 3-layer fully connected network object —— neural network, each of which has a size of N_STATES, N_HIDDEN, and N_ACTIONS. Based on the neural network, the solution implements [DQN Algorithm](https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html).
 
 ### RL_tensorflow
 
 As the [RL_torch](#RL_torch) does, this demo also contains a bandwidth estimator based on reinforcement learning but implemented by [tensorflow](https://github.com/tensorflow/tensorflow).  
-The `select_block` is the same as the demo [Reno](#Reno).
+The `select_block` is the same as that in the demo [Reno](#Reno).
 
 ## Import Package
 
@@ -47,6 +47,6 @@ The official submission system has provided some pre-installed libraries. The fo
 
 | Library name | torch | tensorflow | numpy | simple_emulator |
 | :----------: | :---: | :--------: | :---: | :-------------: |
-|   Version    |  1.8.0  |    2.4.1     | 1.19.5  |       1.0       |
+|   Version    |  1.8.0  |    2.4.1     | 1.19.5  |       0.0.5       |
 
-* If you want to add some site package, please contact us.
+* If you want to add some site packages, please contact us.
