@@ -123,12 +123,13 @@ emulator = Emulator(
 )
 ```
 
-The `block_file`, `trace_file`, `solution` are necessary to construct an Emulator. The `block_file` list contains one or more application trace files.  The `trace_file` represents the network trace file. The `solution` contains methods you implemented.
+The `block_file`, `trace_file`, `solution` are necessary to construct an Emulator. And the function also provides some optional parameters to help diversified experiments. All the parameters and their descriptions are below:
 
-The specific meanings of the optional parameters are as follows: 
-
-| Parameter Name            | Default Value | Description                                                     |
-| ------------------- | ------ | ------------------------------------------------------------ |
+| Parameters           | Default s | Description                                                     |
+| :-----------------: | :----: | :----------------------------------------------------------: |
+| **block_file** | \ | The list contains one or more application trace files |
+| **trace_file** | \ | The network trace file which describe the bandwidth, loss rate, etc. |
+| **solution** | \ | The object initialized for the algorithm to be tested |
 | USE_CWND            | False   | Whether the algorithm is based on the congestion window |
 | ENABLE_DEBUG        | False  | Output DEBUG information                       |
 | ENABLE_LOG          | True   | Output packet-level LOG           |
@@ -159,23 +160,23 @@ In order to help participants better optimize the solution, we also provide some
 ```python
 emulator.print_debug()
 
-analyze_emulator(log_packet_file, file_range="all")
+analyze_emulator(log_file="output/packet_log/packet-0.log", file_range="all")
 
-plot_rate(log_packet_file, trace_file="datasets/network_traces/trace.txt", file_range="all", sender=[1])
+plot_rate(log_file="output/packet_log/packet-0.log", trace_file="datasets/network_traces/trace.txt", file_range="all", sender=[1])
 ```
 
 ## print_debug
 
-Show a brief analysis result, including delay, packet loss, etc. The output example and corresponding explanations are as follows.
+Show a brief analysis result, including delay, the number of packet lost, etc. The output example and corresponding explanations are as follows.
 
 ```
 ---Link Debug---
-Link: 1								# Link ID
-Bandwidth: 1333.333333				# Link bandwidth
-Delay: 0.001000						# Link propagation delay
-Queue Delay: 0.003000				# Queuing delay of the last packet in this link
-Max Queue Delay: 0.041250			# Maximum queuing delay in this link
-One Packet Queue Delay: 0.000750	# Queuing delay of a single packet in this link
+Link: 1                           # Link ID
+Bandwidth: 1333.333333            # Link bandwidth
+Delay: 0.001000                   # Link propagation delay
+Queue Delay: 0.003000             # Queuing delay of the last packet in this link
+Max Queue Delay: 0.041250         # Maximum queuing delay in this link
+One Packet Queue Delay: 0.000750  # Queuing delay of a single packet in this link
 Link: 2
 Bandwidth: inf
 Delay: 0.001000
@@ -183,12 +184,12 @@ Queue Delay: 0.000000
 Max Queue Delay: 0.000000
 One Packet Queue Delay: 0.000000
 ---Sender Debug---
-Sender: 1							# Sender ID
-Rate: inf							# Sender's sending rate
-Sent: 18247							# Number of packet sent
-Acked: 18184						# Number of packet acked
-Lost: 61							# Number of packet lost
-Min Latency: 0.002					# Minimum queuing delay in acked packets
+Sender: 1                         # Sender ID
+Rate: inf                         # Sender's sending rate
+Sent: 18247                       # Number of packet sent
+Acked: 18184                      # Number of packet acked
+Lost: 61                          # Number of packet lost
+Min Latency: 0.002                # Minimum queuing delay in acked packets
 ```
 
 ## analyze_emulator
@@ -197,18 +198,17 @@ The delay curve of the tested algorithm during the evaluation process.
 
 ![image-20210315204252305](https://www.aitrans.online/static/MMGC2021/image-20210315204252305.png)
 
-The required parameter is `log_file`, which represents the packet-level log file that needs to be analyzed.
+The required parameter is `log_file`. And the function also provides some optional parameters to help diversified analysis. All the parameters and their descriptions are below:
 
-The optional parameters are as follows:
-
-| Parameters | Defaults | Explanation                                                  |
-| ---------- | -------- | ------------------------------------------------------------ |
-| rows       | None     | Limit the number of log lines that will be read              |
-| trace_file | None     | The path of network trace file. Use this option to draw bandwidth and statistical throughput in the same picture |
-| time_range | None     | Log file time range used                                     |
-| scatter    | False    | Whether to switch to scatter chart (default is polyline)     |
-| file_range | None     | Log file range. For multiple file logs, you can use this item to specify the range (for example: 'file_range=[1,3]' means files from 1 to 3 (left closed and right open interval), "all" means all files) |
-| sender     | None     | Filter log file by sender ID                                 |
+|  Parameters  | Defaults |                         Description                          |
+| :----------: | :------: | :----------------------------------------------------------: |
+| **log_file** |    \     |     The packet-level log file that needs to be analyzed      |
+|     rows     |   None   |       Limit the number of log lines that will be read        |
+|  trace_file  |   None   | The path of network trace file. Use this option to draw bandwidth and statistical throughput in the same picture |
+|  time_range  |   None   |                   Log file time range used                   |
+|   scatter    |  False   |   Whether to switch to scatter chart (default is polyline)   |
+|  file_range  |   None   | Log file range. For multiple file logs, you can use this item to specify the range (for example: 'file_range=[1,3]' means files from 1 to 3 (left closed and right open interval), "all" means all files) |
+|    sender    |   None   |                 Filter log file by sender ID                 |
 
 ## plot_rate
 
@@ -216,16 +216,16 @@ The transmission speed change curve during the evaluation progress.
 
 ![image-20210315204059497](https://www.aitrans.online/static/MMGC2021/image-20210315204059497.png)
 
-The required parameter is **log_file**, which represents the packet-level log file that needs to be analyzed.
+The required parameter is `log_file`. And the function also provides some optional parameters to help diversified analysis. All the parameters and their descriptions are below:
 
-The optional parameters are as follows:
+|  Parameters  | Defaults |                         Description                          |
+| :----------: | :------: | :----------------------------------------------------------: |
+| **log_file** |    \     |     The packet-level log file that needs to be analyzed      |
+|     rows     |   None   |       Limit the number of log lines that will be read        |
+|  trace_file  |   None   | The path of network trace file. Use this option to draw bandwidth and statistical throughput in the same picture |
+|  time_range  |   None   |                   Log file time range used                   |
+|   scatter    |  False   |   Whether to switch to scatter chart (default is polyline)   |
+|  file_range  |   None   | Log file range. For multiple file logs, you can use this item to specify the range (for example: 'file_range=[1,3]' means files from 1 to 3 (left closed and right open interval), "all" means all files) |
+|    sender    |   None   |                 Filter log file by sender ID                 |
+|     size     |    1     |             Draw a data point every size seconds             |
 
-| Parameters | Defaults | Explanation                                                  |
-| ---------- | -------- | ------------------------------------------------------------ |
-| rows       | None     | Limit the number of log lines that will be read              |
-| trace_file | None     | The path of network trace file. Use this option to draw bandwidth and statistical throughput in the same picture |
-| time_range | None     | Log file time range used                                     |
-| scatter    | False    | Whether to switch to scatter chart (default is polyline)     |
-| file_range | None     | Log file range. For multiple file logs, you can use this item to specify the range (for example: 'file_range=[1,3]' means files from 1 to 3 (left closed and right open interval), "all" means all files) |
-| sender     | None     | Filter log file by sender ID                                 |
-| size       | 1        | Draw a data point every size seconds                         |
