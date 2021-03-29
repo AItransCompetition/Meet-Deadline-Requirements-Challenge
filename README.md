@@ -60,9 +60,9 @@ The emulator will call `select_block` every time sender tries to select a block 
 
 - block_queue
 
-  > This parameter is a list object composed of currently sendable blocks. It is recommended to read about its detailed description : [block_queue](https://github.com/AItransCompetition/simple_emulator/tree/mmgc#table--block_queue)
+  > This parameter is a list object composed of currently sendable blocks. It is recommended to read about its detailed description: [block_queue](https://github.com/AItransCompetition/simple_emulator/tree/mmgc#table--block_queue)
 
-**Output**: Returns the index of the block to be sent. For example, returning `0` means to send the first block in `block_queue`.
+**Output**: Returns the index of the block to be sent. For example, returning `0` means the first block in `block_queue` will be sent.
 
 ## Bandwidth Estimator
 
@@ -80,13 +80,13 @@ The emulator will call `cc_trigger` every time packet acknowledged or packet dro
 
   - event_type
 
-    > We divide the packet into three categories : PACKET_TYPE_FINISHED, PACKET_TYPE_TEMP, PACKET_TYPE_DROP.
+    > There are three categories for the packet involved in the event: PACKET_TYPE_FINISHED, PACKET_TYPE_TEMP, PACKET_TYPE_DROP.
     >
-    > PACKET_TYPE_FINISHED : The acknowledge packet that successfully reached the sender;
+    > PACKET_TYPE_FINISHED: The acknowledge packet that successfully reached the sender;
     >
-    > PACKET_TYPE_TEMP : The packet that have not yet reached the sender;
+    > PACKET_TYPE_TEMP: The packet that has not yet reached the sender;
     >
-    > PACKET_TYPE_DROP : The packet used to inform the sender of packet loss.
+    > PACKET_TYPE_DROP: The packet that is used to inform the sender of packet loss.
 
   - packet_information_dict
 
@@ -134,7 +134,7 @@ The specific meanings of the optional parameters are as follows:
 | ENABLE_LOG          | True   | Output packet-level LOG           |
 | MAX_PACKET_LOG_ROWS | 4000   | The maximum number of records in a packet-level log file, if it exceeds the maximum number of records, a new file will be created |
 | SEED                | -      | Emulator random seed                         |
-| RUN_DIR             | -      | Eimulator run root directory                |
+| RUN_DIR             | -      | Emulator run root directory                |
 
 ## Run an Emulator
 
@@ -204,7 +204,7 @@ The optional parameters are as follows:
 | Parameters | Defaults | Explanation                                                  |
 | ---------- | -------- | ------------------------------------------------------------ |
 | rows       | None     | Limit the number of log lines that will be read              |
-| trace_file | None     | The path of network trace file.Use this option to draw bandwidth and statistical throughput in the same picture |
+| trace_file | None     | The path of network trace file. Use this option to draw bandwidth and statistical throughput in the same picture |
 | time_range | None     | Log file time range used                                     |
 | scatter    | False    | Whether to switch to scatter chart (default is polyline)     |
 | file_range | None     | Log file range. For multiple file logs, you can use this item to specify the range (for example: 'file_range=[1,3]' means files from 1 to 3 (left closed and right open interval), "all" means all files) |
@@ -223,7 +223,7 @@ The optional parameters are as follows:
 | Parameters | Defaults | Explanation                                                  |
 | ---------- | -------- | ------------------------------------------------------------ |
 | rows       | None     | Limit the number of log lines that will be read              |
-| trace_file | None     | The path of network trace file.Use this option to draw bandwidth and statistical throughput in the same picture |
+| trace_file | None     | The path of network trace file. Use this option to draw bandwidth and statistical throughput in the same picture |
 | time_range | None     | Log file time range used                                     |
 | scatter    | False    | Whether to switch to scatter chart (default is polyline)     |
 | file_range | None     | Log file range. For multiple file logs, you can use this item to specify the range (for example: 'file_range=[1,3]' means files from 1 to 3 (left closed and right open interval), "all" means all files) |
