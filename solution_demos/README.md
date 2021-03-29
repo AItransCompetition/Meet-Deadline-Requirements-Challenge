@@ -18,7 +18,7 @@ import os, inspect
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 model_path = current_dir+"/model.path"
 ```
-- Submission limit: 3 times a day during the compitition.
+- Submission limit: 3 times a day during the competition.
 
 ## Demos Of solution.py
 
@@ -38,7 +38,7 @@ In the bandwidth estimator, the solution first defines a 3-layer fully connected
 
 ### RL_tensorflow
 
-As the [RL_torch](#RL_torch) does, this demo also contains a bandwidth estimator based on reinforcement learning but implemented by [tensorflow](https://github.com/tensorflow/tensorflow).  
+As the [RL_torch](#RL_torch) does, this demo also contains a bandwidth estimator based on reinforcement learning but implemented by [TensorFlow](https://github.com/tensorflow/tensorflow).  
 The `select_block` is the same as that in the demo [Reno](#Reno).
 
 ## Import Package

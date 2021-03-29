@@ -26,4 +26,4 @@ For each network trace file, the first column is the timestamp. The second colum
 
 ## Training Set And Test Set
 
-We will provide participants with a training set at the beginning of the compitition. The solutions submitted will be evaluated by the test set. The competition is divided into two stages, each stage has a different test set. Score of your team's solution depends on the second stage-evaluation stage. Beginning time of compitition and evaluation can be seen in the **Timeline** on our [website](https://www.aitrans.online/MMGC2021/).
+We will provide participants with a training set at the beginning of the competition. The solutions submitted will be evaluated by the test set. The competition is divided into two stages, each stage has a different test set. Score of your team's solution depends on the second stage-evaluation stage. Beginning time of competition and evaluation can be seen in the **Timeline** on our [website](https://www.aitrans.online/MMGC2021/).
