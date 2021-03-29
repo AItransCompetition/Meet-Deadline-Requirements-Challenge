@@ -43,38 +43,38 @@ If you want to change the evaluation process, you can modify run_this.py or crea
 
 # Your Task 
 
-Participants need to implement a *Scheduler*. The *Scheduler* consists of two parts-*Blocks Scheduler* and *Bandwidth Estimator*.
+Participants need to implement a *Scheduler*. The *Scheduler* consists of two parts: *Blocks Scheduler* and *Bandwidth Estimator*.
 We have provided some [demos of solution](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/tree/master/solution_demos).
 
 ## Blocks Scheduler
 
-Selecting which block in `block_queue` should be sent at the time `cur_time`. You need to implement your scheduler algorithm in method `select_block`. 
+*Blocks Scheduler* selects which block in `block_queue` should be sent at the time `cur_time`. You need to implement your scheduler algorithm in method `select_block`. 
 
-The emulator will call `select_block` every time sender tries to send a packet from a block. Your algorithm need to select a block and return its id.
+The emulator will call `select_block` every time sender tries to select a block to send. Your algorithm needs to select a block and return its id.
 
-**Input** of the blocks scheduler: `select_block` will get `cur_time` which means current time, and `block_queue`:  
+**Input**: `select_block` will get `cur_time` and `block_queue`:  
 
 - cur_time
 
-  > The time when the packet arrived.
+  > The time when this method is called.
 
 - block_queue
 
   > This parameter is a list object composed of currently sendable blocks. It is recommended to read about its detailed description : [block_queue](https://github.com/AItransCompetition/simple_emulator/tree/mmgc#table--block_queue)
 
-**Output** of the blocks scheduler: Just return the index of the block to be sent in the `block_queue` list, like `0` means that sending the first block in `block_queue`.
+**Output**: Returns the index of the block to be sent. For example, returning `0` means to send the first block in `block_queue`.
 
 ## Bandwidth Estimator
 
-Update the sending rate of packets. You need to implement your bandwidth estimator algorithm in method  `cc_trigger`.
+*Bandwidth Estimator* updates the sending rate of sender. You need to implement your bandwidth estimator algorithm in method  `cc_trigger`.
 
-The emulator will call `cc_trigger` every time packet acked  or packet dropped event happen. And you can update the sending rate and states of your algorithm when `cc_trigger` called.  
+The emulator will call `cc_trigger` every time packet acknowledged or packet dropped event happens. You can update the sending rate and states of your algorithm when `cc_trigger` is called.  
 
-**Input** of the estimator: `cc_trigger` will get `cur_time` which means current time, and a two-tuple `event_info`. You can use these signals in your estimating.
+**Input**: `cc_trigger` will get `cur_time` and a two-tuple `event_info`:
 
 - cur_time
 
-  > The time when the packet arrived.
+  > The time when this method is called.
 
 - event_info
 
@@ -82,17 +82,17 @@ The emulator will call `cc_trigger` every time packet acked  or packet dropped e
 
     > We divide the packet into three categories : PACKET_TYPE_FINISHED, PACKET_TYPE_TEMP, PACKET_TYPE_DROP.
     >
-    > PACKET_TYPE_FINISHED : The acknowledge packet that successfully reached the source point;
+    > PACKET_TYPE_FINISHED : The acknowledge packet that successfully reached the sender;
     >
-    > PACKET_TYPE_TEMP : The packet that have not yet reached the source point;
+    > PACKET_TYPE_TEMP : The packet that have not yet reached the sender;
     >
-    > PACKET_TYPE_DROP : The packet used to inform the source point of packet loss.
+    > PACKET_TYPE_DROP : The packet used to inform the sender of packet loss.
 
   - packet_information_dict
 
-    > The packet it the object implemented in "objects/packet.py". But we recommend you to get more information at [packet_information_dict](https://github.com/AItransCompetition/simple_emulator#table--packet_information_dict).
+    > A dictionary composed of the brief information of the packet. We recommend you to get more information at [packet_information_dict](https://github.com/AItransCompetition/simple_emulator#table--packet_information_dict).
 
-**Output** of the estimator: in addition to controlling by the estimated bandwidth, we also support solutions based on congestion window. The return of `cc_trigger` consists of `cwnd` and `send_rate`. E.g
+**Output**: In addition to controlling by the estimated bandwidth, we also support solutions based on congestion window. The return of `cc_trigger` consists of `cwnd` and `send_rate`. E.g
 ```python
 {
     "cwnd" : 10,
@@ -103,7 +103,7 @@ The emulator will call `cc_trigger` every time packet acked  or packet dropped e
 ## Other States Update Points
 
 You can set or update the states of your algorithm in methods `__init__` and `on_packet_sent`. 
-Moreover, you can also update the send rate or CWND when returning from `on_packet_sent`. Emulator calls `on_packet_sent` every time sender tries to send a packet.  
+Moreover, you can also update the `send_rate` or `cwnd` when returning from `on_packet_sent`. Emulator calls `on_packet_sent` every time sender tries to send a packet.  
 
 # Solution Evaluation
 
