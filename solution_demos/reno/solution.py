@@ -80,7 +80,7 @@ class MySolution(BlockSelection, Reno):
 
     def on_packet_sent(self, cur_time):
         """
-        The part of solution to update the states of the algorithm when sender need to send pacekt.
+        The part of solution to update the states of the algorithm when sender need to send packet.
         """
         return super().on_packet_sent(cur_time)
 
