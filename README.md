@@ -1,6 +1,6 @@
 # [ACM Multimedia 2021 Grand Challenge: Meet Deadline Requirements](https://www.aitrans.online/MMGC2021/) <!-- omit in toc -->
 
-![running demos](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/actions/workflows/main.yml/badge.svg)
+![running demos](https://github.com/AItransCompetition/Meet-Deadline-Requirements-Challenge/actions/workflows/main.yml/badge.svg?branch=dev)
 
 This repo contains demos and datasets of *ACM Multimedia 2021 Grand Challenge: Meet Deadline Requirements*. You can see more information about this challenge on our [website](https://www.aitrans.online/MMGC2021/). Any registration and participation are welcome.
 
