@@ -2,13 +2,33 @@
 This demo aims to help player running system quickly by using the pypi library simple-emualtor https://pypi.org/project/simple-emulator/.
 """
 
-from simple_emulator import SimpleEmulator
+from simple_emulator import SimpleEmulator, create_mmgc_compete_emulator
 
 # We provided some function of plotting to make you analyze result easily in utils.py
 from simple_emulator import analyze_emulator, plot_rate
 from simple_emulator import constant
 
 from simple_emulator import cal_qoe
+
+
+def run_and_plot(emulator, network_trace, log_packet_file):
+    # Run the emulator and you can specify the time for the emualtor's running.
+    # It will run until there is no packet can sent by default.
+    emulator.run_for_dur(15)
+
+    # print the debug information of links and senders
+    emulator.print_debug()
+
+    # Output the picture of emulator-analysis.png
+    # You can get more information from https://github.com/AItransCompetition/simple_emulator/tree/master#emulator-analysispng.
+    analyze_emulator(log_packet_file, file_range="all", sender=[1])
+
+    # Output the picture of rate_changing.png
+    # You can get more information from https://github.com/AItransCompetition/simple_emulator/tree/master#cwnd_changingpng
+    plot_rate(log_packet_file, trace_file=network_trace, file_range="all", sender=[1])
+
+    print("Qoe : %d" % (cal_qoe()) )
+
 
 def evaluate(solution_file, block_traces, network_trace, log_packet_file):
     # fixed random seed
@@ -23,7 +43,6 @@ def evaluate(solution_file, block_traces, network_trace, log_packet_file):
     my_solution = solution.MySolution()
 
     # Create the emulator using your solution
-    # Specify USE_CWND to decide whether or not use crowded windows. USE_CWND=False by default.
     # Specify ENABLE_LOG to decide whether or not output the log of packets. ENABLE_LOG=True by default.
     # You can get more information about parameters at https://github.com/AItransCompetition/simple_emulator/tree/master#constant
     emulator = SimpleEmulator(
@@ -33,23 +52,34 @@ def evaluate(solution_file, block_traces, network_trace, log_packet_file):
         # enable logging packet. You can train faster if USE_CWND=False
         ENABLE_LOG=True
     )
+    run_and_plot(emulator, network_trace, log_packet_file)
 
-    # Run the emulator and you can specify the time for the emualtor's running.
-    # It will run until there is no packet can sent by default.
-    emulator.run_for_dur(15)
 
-    # print the debug information of links and senders
-    emulator.print_debug()
+def evaluate_compete_emulator(solution_file, first_block_file, second_block_file, network_trace, log_packet_file):
+    # fixed random seed
+    import random
+    random.seed(1)
 
-    # Output the picture of emulator-analysis.png
-    # You can get more information from https://github.com/AItransCompetition/simple_emulator/tree/master#emulator-analysispng.
-    analyze_emulator(log_packet_file, file_range="all")
+    # import the solution
+    import importlib
+    solution = importlib.import_module(solution_file)
 
-    # Output the picture of rate_changing.png
-    # You can get more information from https://github.com/AItransCompetition/simple_emulator/tree/master#cwnd_changingpng
-    plot_rate(log_packet_file, trace_file=network_trace, file_range="all", sender=[1])
+    # Use the object you created above
+    my_solution = solution.MySolution()
 
-    print("Qoe : %d" % (cal_qoe()) )
+    # Create the emulator using your solution
+    # Specify ENABLE_LOG to decide whether or not output the log of packets. ENABLE_LOG=True by default.
+    # You can get more information about parameters at https://github.com/AItransCompetition/simple_emulator/tree/master#constant
+    emulator = create_mmgc_compete_emulator(
+        first_block_file = first_block_file,
+        second_block_file = second_block_file,
+        solution=my_solution,
+        trace_file=network_trace,
+        # enable logging packet. You can train faster if USE_CWND=False
+        ENABLE_LOG=True,
+        SEED=1
+    )
+    run_and_plot(emulator, network_trace, log_packet_file)
 
 
 if __name__ == '__main__':
@@ -61,6 +91,14 @@ if __name__ == '__main__':
     # Select the solution file
     solution_file = 'solution_demos.reno.solution'
 
+    # contruct the simple emulator and evaluate contestant's solution
     evaluate(solution_file, block_traces, network_trace, log_packet_file)
+
+    # The block files for the first sender representing the contestant's solution
+    first_block_file = block_traces
+    # The block files for the second sender which competing with first sender for network resources
+    second_block_file = ["datasets/compete_traces/web.csv"]
+    # contruct the compete emulator and evaluate contestant's solution
+    # evaluate_compete_emulator(solution_file, first_block_file, second_block_file, network_trace, log_packet_file)
 
 
