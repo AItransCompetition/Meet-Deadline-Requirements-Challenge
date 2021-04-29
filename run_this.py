@@ -2,7 +2,7 @@
 This demo aims to help player running system quickly by using the pypi library simple-emualtor https://pypi.org/project/simple-emulator/.
 """
 
-from simple_emulator import SimpleEmulator, create_mmgc_compete_emulator
+from simple_emulator import SimpleEmulator, create_emulator
 
 # We provided some function of plotting to make you analyze result easily in utils.py
 from simple_emulator import analyze_emulator, plot_rate
@@ -30,7 +30,7 @@ def run_and_plot(emulator, network_trace, log_packet_file):
     print("Qoe : %d" % (cal_qoe()) )
 
 
-def evaluate(solution_file, block_traces, network_trace, log_packet_file):
+def evaluate(solution_file, block_traces, network_trace, log_packet_file, second_block_file=None):
     # fixed random seed
     import random
     random.seed(1)
@@ -43,41 +43,16 @@ def evaluate(solution_file, block_traces, network_trace, log_packet_file):
     my_solution = solution.MySolution()
 
     # Create the emulator using your solution
+    # Set second_block_file=None if you want to evaluate your solution in situation of single flow
     # Specify ENABLE_LOG to decide whether or not output the log of packets. ENABLE_LOG=True by default.
     # You can get more information about parameters at https://github.com/AItransCompetition/simple_emulator/tree/master#constant
-    emulator = SimpleEmulator(
+    emulator = create_emulator(
         block_file=block_traces,
+        second_block_file=second_block_file,
         trace_file=network_trace,
         solution=my_solution,
-        # enable logging packet. You can train faster if USE_CWND=False
+        # enable logging packet. You can train faster if ENABLE_LOG=False
         ENABLE_LOG=True
-    )
-    run_and_plot(emulator, network_trace, log_packet_file)
-
-
-def evaluate_compete_emulator(solution_file, first_block_file, second_block_file, network_trace, log_packet_file):
-    # fixed random seed
-    import random
-    random.seed(1)
-
-    # import the solution
-    import importlib
-    solution = importlib.import_module(solution_file)
-
-    # Use the object you created above
-    my_solution = solution.MySolution()
-
-    # Create the emulator using your solution
-    # Specify ENABLE_LOG to decide whether or not output the log of packets. ENABLE_LOG=True by default.
-    # You can get more information about parameters at https://github.com/AItransCompetition/simple_emulator/tree/master#constant
-    emulator = create_mmgc_compete_emulator(
-        first_block_file = first_block_file,
-        second_block_file = second_block_file,
-        solution=my_solution,
-        trace_file=network_trace,
-        # enable logging packet. You can train faster if USE_CWND=False
-        ENABLE_LOG=True,
-        SEED=1
     )
     run_and_plot(emulator, network_trace, log_packet_file)
 
@@ -99,6 +74,6 @@ if __name__ == '__main__':
     # The block files for the second sender which competing with first sender for network resources
     second_block_file = ["datasets/compete_traces/web.csv"]
     # contruct the compete emulator and evaluate contestant's solution
-    # evaluate_compete_emulator(solution_file, first_block_file, second_block_file, network_trace, log_packet_file)
+    # evaluate(solution_file, first_block_file, network_trace, log_packet_file, second_block_file=second_block_file)
 
 
