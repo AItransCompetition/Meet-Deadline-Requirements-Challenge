@@ -66,14 +66,17 @@ if __name__ == '__main__':
     # Select the solution file
     solution_file = 'solution_demos.reno.solution'
 
-    # contruct the simple emulator and evaluate contestant's solution
-    evaluate(solution_file, block_traces, network_trace, log_packet_file)
 
-    # The block files for the first sender representing the contestant's solution
+    # The first sender will use your solution, while the second sender will send the background traffic
+
+    # The block files for the first sender
     first_block_file = block_traces
-    # The block files for the second sender which competing with first sender for network resources
+    # The block files for the second sender
     second_block_file = ["datasets/compete_traces/web.csv"]
-    # contruct the compete emulator and evaluate contestant's solution
-    # evaluate(solution_file, first_block_file, network_trace, log_packet_file, second_block_file=second_block_file)
+    # Create the emulator and evaluate your solution
+    evaluate(solution_file, first_block_file, network_trace, log_packet_file, second_block_file=second_block_file)
+
+    # If only one block_traces is given, it means there will be no background traffic
+    # evaluate(solution_file, block_traces, network_trace, log_packet_file)
 
 
