@@ -58,8 +58,8 @@ def evaluate(solution_file, block_traces, network_trace, log_packet_file, second
 
 
 if __name__ == '__main__':
-    block_traces = ["datasets/application_traces/data_video.csv", "datasets/application_traces/data_audio.csv"]
-    network_trace = "datasets/network_traces/trace.txt"
+    block_traces = ["datasets/scenario_2/blocks/block_video.csv", "datasets/scenario_2/blocks/block_audio.csv"]
+    network_trace = "datasets/scenario_2/networks/traces_7.txt"
     
     # The file path of packets' log
     log_packet_file = "output/packet_log/packet-0.log"
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     # The block files for the first sender
     first_block_file = block_traces
     # The block files for the second sender
-    second_block_file = ["datasets/compete_traces/web.csv"]
+    second_block_file = ["datasets/background_traffic_traces/web.csv"]
     # Create the emulator and evaluate your solution
     evaluate(solution_file, first_block_file, network_trace, log_packet_file, second_block_file=second_block_file)
 
