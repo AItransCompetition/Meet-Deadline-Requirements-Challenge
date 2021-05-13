@@ -47,6 +47,6 @@ The official submission system has provided some pre-installed libraries. The fo
 
 | Library name | torch | tensorflow | numpy | simple_emulator |
 | :----------: | :---: | :--------: | :---: | :-------------: |
-|   Version    |  1.8.0  |    2.4.1     | 1.19.5  |       0.0.5       |
+|   Version    |  1.8.0  |    2.4.1     | 1.19.5  |       0.0.9       |
 
 * If you want to add some site packages, please contact us.
