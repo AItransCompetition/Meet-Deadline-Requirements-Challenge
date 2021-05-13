@@ -19,10 +19,10 @@ For each file of application trace, the first column is the created time of the 
 For each network trace file, the first column is the timestamp. The second column is bandwidth, in megabytes. The third column is the random loss rate of the link. The last column is the fixed propagation delay in seconds.
 
 | Time (s) | Bandwidth (MB)     | Loss Rate | Propagation Delay (s) |
-| -------- | ------------------ | ------------ | --------------------- |
-| 0        | 19.38592070201254  | 0            | 0.001                 |
-| 1        | 24.832955411664393 | 0            | 0.001                 |
-| ...      | ...                | ...          | ...                   |
+| -------- | ------------------ | --------- | --------------------- |
+| 0        | 19.38592070201254  | 0         | 0.001                 |
+| 1        | 24.832955411664393 | 0         | 0.001                 |
+| ...      | ...                | ...       | ...                   |
 
 ## Training Set And Test Set
 
