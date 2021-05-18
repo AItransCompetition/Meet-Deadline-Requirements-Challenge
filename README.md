@@ -60,7 +60,7 @@ The emulator will call `select_block` every time sender tries to select a block 
 
 - block_queue
 
-  > This parameter is a list object composed of currently sendable blocks. It is recommended to read about its detailed description: [block_queue](https://github.com/AItransCompetition/simple_emulator/tree/mmgc#table--block_queue)
+  > This parameter is a list object composed of currently sendable blocks. It is recommended to read about its detailed description: [block_queue](https://github.com/AItransCompetition/simple_emulator/tree/mmgc_stable#table--block_queue)
 
 **Output**: Returns the index of the block to be sent. For example, returning `0` means the first block in `block_queue` will be sent.
 
