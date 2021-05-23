@@ -118,6 +118,9 @@ emulator = Emulator(
     block_file=["datasets/application_traces/data_video.csv", "datasets/application_traces/data_audio.csv"],
     trace_file="datasets/network_traces/trace.txt",
     solution=my_solution,
+    # The system will choose a number as the link buffer from the range MIN_QUEUE to MAX_QUEUE
+    MIN_QUEUE=55,
+    MAX_QUEUE=55,
     # enable logging packet. You can train faster if USE_CWND=False
     ENABLE_LOG=True
 )
@@ -132,6 +135,8 @@ The `block_file`, `trace_file`, `solution` are necessary to construct an Emulato
 | **solution** | \ | The object initialized for the algorithm to be tested |
 | USE_CWND            | False   | Whether the algorithm is based on the congestion window |
 | ENABLE_DEBUG        | False  | Output DEBUG information                       |
+| MIN_QUEUE | 55 | The minimum link buffer size |
+| MAX_QUEUE | 55 | The maximum link buffer size |
 | ENABLE_LOG          | True   | Output packet-level LOG           |
 | MAX_PACKET_LOG_ROWS | 4000   | The maximum number of records in a packet-level log file, if it exceeds the maximum number of records, a new file will be created |
 | SEED                | -      | Emulator random seed                         |
