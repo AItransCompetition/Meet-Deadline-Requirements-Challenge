@@ -6,7 +6,6 @@ from simple_emulator import SimpleEmulator, create_emulator
 
 # We provided some function of plotting to make you analyze result easily in utils.py
 from simple_emulator import analyze_emulator, plot_rate
-from simple_emulator import constant
 
 from simple_emulator import cal_qoe
 

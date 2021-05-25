@@ -7,7 +7,6 @@ from simple_emulator import CongestionControl
 # In this example, it will select the packet according to packet's created time first and radio of rest life time to deadline secondly.
 from simple_emulator import BlockSelection
 
-from simple_emulator import constant
 import numpy as np;
 
 # for tf version < 2.0
@@ -204,7 +203,7 @@ class RL(CongestionControl):
             # throughput
             sum_rate = self.event_ack_nums / event_time
             instant_ack_packet = list(filter(lambda data:data[1]["event_type"] == 'F', instant_packet))
-            instant_rate = len(instant_ack_packet) / (instant_packet[-1][0] - instant_packet[0][0]) if len(instant_packet) > 1 else 0
+            instant_rate = len(instant_ack_packet) / (instant_packet[-1][0] - instant_packet[0][0]) if (instant_packet[-1][0] - instant_packet[0][0]) > 0 else 0
 
             # declining random rate
             self.random_counter-=1

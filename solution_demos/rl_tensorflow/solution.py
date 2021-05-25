@@ -7,7 +7,6 @@ from simple_emulator import CongestionControl
 # In this example, it will select the block according to block's created time first and radio of rest life time to deadline secondly.
 from simple_emulator import BlockSelection
 
-from simple_emulator import constant
 import numpy as np;
 
 # for tf version < 2.0
